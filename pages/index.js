@@ -1,9 +1,43 @@
+import java from 'highlight.js/lib/languages/java';
+import javascript from 'highlight.js/lib/languages/javascript';
+import React, { useState } from 'react';
+import highlight from 'rehype-highlight';
+import rehype2react from 'rehype-react';
+import html from 'rehype-stringify';
+import markdown from 'remark-parse';
+import remark2rehype from 'remark-rehype';
+import unified from 'unified';
+import Preview from '../components/Preview';
+
 export default function Home() {
+    const [text, setText] = useState();
+    const [processedHtml, setProcessedHTml] = useState();
+    const processor = unified()
+        .use(markdown)
+        .use(remark2rehype)
+        .use(highlight, {
+            languages: {
+                js: javascript,
+                java: java
+            }
+        })
+        .use(html)
+        .use(rehype2react, {
+            createElement: React.createElement,
+            Fragment: Preview
+        });
+
+    const processText = () => {
+        console.log(text);
+        const result = processor.processSync(text).result;
+        setProcessedHTml(result);
+    };
+
     return (
         <div className="flex h-screen mx-auto">
             <div className="flex flex-col flex-shrink-0 bg-gray-200 w-60">
                 <div className="flex items-center h-12 px-4 border-b border-gray-300">
-                    <span className="text-xl font-bold tracking-wider text-blue-800">
+                    <span className="text-xl font-bold tracking-widest text-blue-800">
                         Noteworthy
                     </span>
                 </div>
@@ -24,7 +58,7 @@ export default function Home() {
                             />
                         </svg>
                         <span className="ml-1 font-semibold text-gray-600">
-                            Inbox
+                            All Notes
                         </span>
                     </button>
                     <button className="flex items-center p-2 rounded hover:bg-gray-100 focus:outline-none">
@@ -83,11 +117,26 @@ export default function Home() {
                         </svg>
                     </button>
                 </div>
-                <div className="flex items-center justify-center h-full p-10 bg-gray-100">
-                    <div
-                        className="flex flex-1 h-full p-4 bg-white rounded"
-                        contentEditable
-                    ></div>
+                <div className="flex h-full overflow-hidden">
+                    <div className="flex flex-col w-1/2 gap-3 p-4 overflow-y-auto bg-white rounded">
+                        <div className="">
+                            <button
+                                onClick={processText}
+                                className="p-2 bg-blue-100 shadow-md focus:outline-none"
+                            >
+                                process
+                            </button>
+                        </div>
+                        <div className="h-full p-2 border border-gray-200 rounded-md">
+                            <textarea
+                                onChange={e => setText(e.target.value)}
+                                className="w-full h-full focus:outline-none"
+                            ></textarea>
+                        </div>
+                    </div>
+                    <div className="flex w-1/2 p-4 overflow-y-auto bg-green-50">
+                        {processedHtml}
+                    </div>
                 </div>
             </div>
         </div>
