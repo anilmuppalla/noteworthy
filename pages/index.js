@@ -3,7 +3,7 @@ export default function Home() {
         <div className="flex h-screen mx-auto">
             <div className="flex flex-col flex-shrink-0 bg-gray-200 w-60">
                 <div className="flex items-center h-12 px-4 border-b border-gray-300">
-                    <span className="text-xl font-bold tracking-wider text-blue-800">
+                    <span className="text-xl font-bold tracking-widest text-blue-800">
                         Noteworthy
                     </span>
                 </div>
