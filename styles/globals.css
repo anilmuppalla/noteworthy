@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'highlight.js/styles/stackoverflow-light.css';
+
 .hljs {
-    @apply w-full bg-gray-200 rounded;
+    @apply w-full bg-white rounded;
 }
