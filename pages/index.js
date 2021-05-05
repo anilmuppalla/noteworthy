@@ -16,6 +16,8 @@ export default function Home() {
         .use(markdown)
         .use(remark2rehype)
         .use(highlight, {
+            ignoreMissing: true,
+            subset: ['java'],
             languages: {
                 js: javascript,
                 java: java
@@ -27,8 +29,7 @@ export default function Home() {
             Fragment: Preview
         });
 
-    const processText = () => {
-        console.log(text);
+    const processText = text => {
         const result = processor.processSync(text).result;
         setProcessedHTml(result);
     };
@@ -118,23 +119,13 @@ export default function Home() {
                     </button>
                 </div>
                 <div className="flex h-full overflow-hidden">
-                    <div className="flex flex-col w-1/2 gap-3 p-4 overflow-y-auto bg-white rounded">
-                        <div className="">
-                            <button
-                                onClick={processText}
-                                className="p-2 bg-blue-100 shadow-md focus:outline-none"
-                            >
-                                process
-                            </button>
-                        </div>
-                        <div className="h-full p-2 border border-gray-200 rounded-md">
-                            <textarea
-                                onChange={e => setText(e.target.value)}
-                                className="w-full h-full focus:outline-none"
-                            ></textarea>
-                        </div>
+                    <div className="flex w-1/2 gap-3 p-4 overflow-y-auto bg-white rounded">
+                        <textarea
+                            onChange={e => processText(e.target.value)}
+                            className="w-full h-full focus:outline-none"
+                        ></textarea>
                     </div>
-                    <div className="flex w-1/2 p-4 overflow-y-auto bg-green-50">
+                    <div className="flex w-1/2 p-4 overflow-y-auto bg-gray-50">
                         {processedHtml}
                     </div>
                 </div>
