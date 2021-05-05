@@ -1,17 +1,17 @@
 export default function Home() {
     return (
-        <div className="h-screen flex mx-auto">
-            <div className="flex flex-col flex-shrink-0 w-60 bg-gray-200">
-                <div className="flex items-center border-b border-gray-300 h-12 px-4">
-                    <span className="font-bold tracking-wider text-xl text-blue-800">
+        <div className="flex h-screen mx-auto">
+            <div className="flex flex-col flex-shrink-0 bg-gray-200 w-60">
+                <div className="flex items-center h-12 px-4 border-b border-gray-300">
+                    <span className="text-xl font-bold tracking-wider text-blue-800">
                         Noteworthy
                     </span>
                 </div>
-                <div className="flex flex-col p-4 gap-2">
-                    <button className="flex p-2 rounded items-center bg-gray-100 focus:outline-none">
+                <div className="flex flex-col gap-2 p-4">
+                    <button className="flex items-center p-2 bg-gray-100 rounded focus:outline-none">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
+                            className="w-5 h-5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -27,10 +27,10 @@ export default function Home() {
                             Inbox
                         </span>
                     </button>
-                    <button className="flex p-2 rounded items-center hover:bg-gray-100 focus:outline-none">
+                    <button className="flex items-center p-2 rounded hover:bg-gray-100 focus:outline-none">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
+                            className="w-5 h-5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -48,12 +48,12 @@ export default function Home() {
                     </button>
                 </div>
             </div>
-            <div className="flex flex-1 flex-col">
-                <div className="flex border-b border-gray-300 justify-center p-2 gap-10 h-12">
-                    <button className="flex justify-center rounded focus:outline-none w-20 py-1 hover:bg-gray-100">
+            <div className="flex flex-col flex-1">
+                <div className="flex justify-center h-12 gap-10 p-2 border-b border-gray-300">
+                    <button className="flex justify-center w-20 py-1 rounded focus:outline-none hover:bg-gray-100">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6 text-gray-600"
+                            className="w-6 h-6 text-gray-600"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -66,10 +66,10 @@ export default function Home() {
                             />
                         </svg>
                     </button>
-                    <button className="flex justify-center rounded focus:outline-none w-20 py-1 hover:bg-gray-100">
+                    <button className="flex justify-center w-20 py-1 rounded focus:outline-none hover:bg-gray-100">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
+                            className="w-5 h-5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -83,9 +83,9 @@ export default function Home() {
                         </svg>
                     </button>
                 </div>
-                <div className="flex bg-gray-100 items-center justify-center h-full p-10">
+                <div className="flex items-center justify-center h-full p-10 bg-gray-100">
                     <div
-                        className="flex flex-1 bg-white rounded p-4 h-full"
+                        className="flex flex-1 h-full p-4 bg-white rounded"
                         contentEditable
                     ></div>
                 </div>
