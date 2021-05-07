@@ -4,6 +4,39 @@
 
 @import 'highlight.js/styles/stackoverflow-light.css';
 
-.hljs {
-    @apply w-full bg-white rounded;
+@layer utilities {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .no-scrollbar::-webkit-scrollbar-track {
+        display: none;
+    }
+
+    .no-scrollbar::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: rgba(107, 114, 128);
+    }
+
+    /* .no-scrollbar { */
+    /* -ms-overflow-style: block; IE and Edge */
+    /* scrollbar-width: 1px; Firefox */
+    /* } */
+
+    .hljs {
+        @apply w-full bg-gray-100 rounded;
+    }
+
+    h1 {
+        @apply text-3xl;
+    }
+
+    h2 {
+        @apply text-2xl;
+    }
+
+    h3 {
+        @apply text-xl;
+    }
 }
