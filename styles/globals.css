@@ -25,18 +25,18 @@
     /* } */
 
     .hljs {
-        @apply w-full bg-gray-100 rounded;
+        @apply w-full bg-gray-100 rounded-md;
     }
 
-    h1 {
-        @apply text-3xl;
+    .markdown h1 {
+        @apply text-3xl border-b;
     }
 
-    h2 {
-        @apply text-2xl;
+    .markdown h2 {
+        @apply text-2xl border-b;
     }
 
-    h3 {
-        @apply text-xl;
+    .markdown h3 {
+        @apply text-xl border-b;
     }
 }

@@ -155,7 +155,7 @@ export default function Home() {
                     <div className="flex h-full overflow-hidden">
                         {render ? (
                             <div
-                                className={`no-scrollbar border p-2 overflow-y-auto ${
+                                className={`no-scrollbar p-2 overflow-y-auto ${
                                     render ? 'w-full' : 'hidden'
                                 }`}
                             >
