@@ -1,6 +1,6 @@
 import java from 'highlight.js/lib/languages/java';
 import javascript from 'highlight.js/lib/languages/javascript';
-import { createElement, useState } from 'react';
+import { createElement, useEffect, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import format from 'rehype-format';
 import highlight from 'rehype-highlight';
@@ -14,10 +14,7 @@ import Preview from '../components/Preview';
 const Home = props => {
     const [text, setText] = useState();
     const [render, setRender] = useState(false);
-    useHotkeys('command+shift+e', e => {
-        e.preventDefault();
-        setRender(render => !render);
-    });
+
     const [processedHtml, setProcessedHTml] = useState();
 
     const processor = unified()
@@ -40,8 +37,15 @@ const Home = props => {
     async function processText() {
         const result = (await processor.process(text)).result;
         setProcessedHTml(result);
-        setRender(!render);
     }
+
+    useEffect(() => {
+        processText();
+    }, [text]);
+
+    useHotkeys('command+shift+e', () => {
+        setRender(render => !render);
+    });
 
     return (
         <div className="flex h-screen mx-auto">
@@ -130,7 +134,7 @@ const Home = props => {
                 <div className="flex flex-col h-full mx-10 my-5 overflow-hidden">
                     <div className="flex justify-end">
                         <button
-                            onClick={processText}
+                            onClick={e => setRender(!render)}
                             className="p-2 m-1 text-gray-600 rounded-full hover:bg-blue-100 focus:outline-none"
                         >
                             {render ? (
@@ -172,7 +176,7 @@ const Home = props => {
                                 <textarea
                                     placeholder="Start typing..."
                                     onChange={e => setText(e.target.value)}
-                                    className="w-full h-full p-2 border resize-none focus:outline-none no-scrollbar"
+                                    className="w-full h-full p-2 resize-none focus:outline-none no-scrollbar"
                                     value={text}
                                 ></textarea>
                             </div>
