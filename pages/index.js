@@ -1,6 +1,7 @@
 import java from 'highlight.js/lib/languages/java';
 import javascript from 'highlight.js/lib/languages/javascript';
-import React, { useState } from 'react';
+import { createElement, useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
 import format from 'rehype-format';
 import highlight from 'rehype-highlight';
 import rehype2react from 'rehype-react';
@@ -10,10 +11,15 @@ import remark2rehype from 'remark-rehype';
 import unified from 'unified';
 import Preview from '../components/Preview';
 
-export default function Home() {
+const Home = props => {
     const [text, setText] = useState();
     const [render, setRender] = useState(false);
+    useHotkeys('command+shift+e', e => {
+        e.preventDefault();
+        setRender(render => !render);
+    });
     const [processedHtml, setProcessedHTml] = useState();
+
     const processor = unified()
         .use(markdown)
         .use(format)
@@ -27,7 +33,7 @@ export default function Home() {
         })
         .use(html)
         .use(rehype2react, {
-            createElement: React.createElement,
+            createElement: createElement,
             Fragment: Preview
         });
 
@@ -176,4 +182,6 @@ export default function Home() {
             </div>
         </div>
     );
-}
+};
+
+export default Home;
