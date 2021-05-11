@@ -1,4 +1,4 @@
-Hello there 👋! thank you for stopping by
+Hello there 👋 ! thank you for stopping by
 
 Noteworthy is a markdown based note taking app is built using:
 
@@ -12,4 +12,4 @@ hosted on:
 
 ## Features
 
-1. cmd+shift+e to flip between edit/render modes
+1. `cmd+shift+e` to flip between edit/render modes

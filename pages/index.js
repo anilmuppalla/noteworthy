@@ -5,22 +5,25 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import format from 'rehype-format';
 import highlight from 'rehype-highlight';
 import rehype2react from 'rehype-react';
-import html from 'rehype-stringify';
-import markdown from 'remark-parse';
+import gfm from 'remark-gfm';
+import parse from 'remark-parse';
 import remark2rehype from 'remark-rehype';
+import html from 'remark-stringify';
 import unified from 'unified';
 import Preview from '../components/Preview';
 
 const Home = props => {
-    const [text, setText] = useState();
+    const [text, setText] = useState('');
     const [render, setRender] = useState(false);
 
     const [processedHtml, setProcessedHTml] = useState();
 
     const processor = unified()
-        .use(markdown)
-        .use(format)
+        .use(parse)
+        .use(gfm)
+        .use(html)
         .use(remark2rehype)
+        .use(format)
         .use(highlight, {
             ignoreMissing: true,
             languages: {
@@ -28,7 +31,6 @@ const Home = props => {
                 java: java
             }
         })
-        .use(html)
         .use(rehype2react, {
             createElement: createElement,
             Fragment: Preview
