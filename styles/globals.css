@@ -4,7 +4,7 @@
 
 @import 'highlight.js/styles/stackoverflow-light.css';
 
-@layer utilities {
+@layer base {
     /* Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
         width: 6px;
@@ -24,19 +24,28 @@
     /* scrollbar-width: 1px; Firefox */
     /* } */
 
-    .hljs {
-        @apply w-full bg-gray-100 rounded-md;
+    .markdown .hljs,
+    .markdown code {
+        @apply w-full p-1 bg-gray-100 rounded;
     }
 
-    .markdown h1 {
+    .markdown > h1 {
         @apply text-3xl border-b;
     }
 
-    .markdown h2 {
+    .markdown > h2 {
         @apply text-2xl border-b;
     }
 
-    .markdown h3 {
+    .markdown > h3 {
         @apply text-xl border-b;
+    }
+
+    .markdown > ul {
+        @apply ml-4 list-disc list-inside;
+    }
+
+    .markdown > ol {
+        @apply ml-4 list-decimal list-inside;
     }
 }
