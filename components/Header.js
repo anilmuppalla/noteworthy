@@ -1,7 +1,7 @@
 import Link from 'next/link';
 const Header = props => {
     return (
-        <div className="flex items-center justify-between px-4 border-b border-gray-300 h-14">
+        <div className="flex items-center justify-between px-4 py-1 border-b border-gray-300">
             <div className="flex items-center">
                 <Link href="/">
                     <div className="text-xl font-bold tracking-widest text-pink-700 cursor-pointer">
@@ -27,7 +27,7 @@ const Header = props => {
                     </button>
                 </div>
             </div>
-            <Link href="/new" className="">
+            <Link href="/new">
                 <button className="flex items-center p-2 border border-pink-700 rounded-full hover:text-white hover:bg-pink-700 focus:outline-none">
                     <span>
                         <svg
@@ -38,9 +38,9 @@ const Header = props => {
                             stroke="currentColor"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                             />
                         </svg>
