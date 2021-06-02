@@ -1,6 +1,6 @@
 import java from 'highlight.js/lib/languages/java';
 import javascript from 'highlight.js/lib/languages/javascript';
-import { createElement, useEffect, useState } from 'react';
+import { createElement, useEffect, useRef, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import format from 'rehype-format';
 import highlight from 'rehype-highlight';
@@ -14,6 +14,7 @@ import Preview from '../components/Preview';
 
 const New = props => {
     const [text, setText] = useState('');
+    const inputRef = useRef(null);
     const [render, setRender] = useState(false);
 
     const [processedHtml, setProcessedHTml] = useState();
@@ -45,13 +46,17 @@ const New = props => {
         processText();
     }, [text]);
 
+    useEffect(() => {
+        inputRef.current.focus();
+    }, [inputRef]);
+
     useHotkeys('command+shift+e', () => {
         setRender(render => !render);
     });
 
     return (
-        <div className="flex flex-col flex-1 bg-gray-50">
-            <div className="flex flex-col h-full mx-10 my-5 overflow-hidden">
+        <div className="flex flex-col items-center h-full bg-gray-100">
+            <div className="flex flex-col w-1/2 h-full my-5 overflow-hidden">
                 <div className="flex justify-end">
                     <button
                         onClick={e => setRender(!render)}
@@ -82,10 +87,10 @@ const New = props => {
                         )}
                     </button>
                 </div>
-                <div className="flex h-full overflow-hidden">
+                <div className="flex justify-center w-full h-full overflow-hidden rounded">
                     {render ? (
                         <div
-                            className={`no-scrollbar p-2 overflow-y-auto ${
+                            className={`no-scrollbar p-8 overflow-y-auto bg-white ${
                                 render ? 'w-full' : 'hidden'
                             }`}
                         >
@@ -94,9 +99,9 @@ const New = props => {
                     ) : (
                         <div className="w-full h-full">
                             <textarea
-                                placeholder="Start typing..."
+                                ref={inputRef}
                                 onChange={e => setText(e.target.value)}
-                                className="w-full h-full p-2 resize-none focus:outline-none no-scrollbar"
+                                className="w-full h-full p-8 bg-white shadow-lg resize-none focus:outline-none no-scrollbar"
                                 value={text}
                             ></textarea>
                         </div>
