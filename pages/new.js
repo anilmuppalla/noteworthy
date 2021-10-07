@@ -56,7 +56,7 @@ const New = props => {
 
     return (
         <div className="flex flex-col items-center h-full bg-gray-100">
-            <div className="flex flex-col w-1/2 h-full my-5 overflow-hidden">
+            <div className="flex flex-col w-full h-full p-10 overflow-hidden lg:w-3/4">
                 <div className="flex justify-end">
                     <button
                         onClick={e => setRender(!render)}
@@ -87,21 +87,21 @@ const New = props => {
                         )}
                     </button>
                 </div>
-                <div className="flex justify-center w-full h-full overflow-hidden rounded">
+                <div className="w-full h-full overflow-hidden rounded shadow-xl">
                     {render ? (
                         <div
                             className={`no-scrollbar p-8 overflow-y-auto bg-white ${
-                                render ? 'w-full' : 'hidden'
+                                render ? 'w-full h-full' : 'hidden'
                             }`}
                         >
                             {processedHtml}
                         </div>
                     ) : (
-                        <div className="w-full h-full">
+                        <div className="w-full h-full shadow-lg">
                             <textarea
                                 ref={inputRef}
                                 onChange={e => setText(e.target.value)}
-                                className="w-full h-full p-8 bg-white shadow-lg resize-none focus:outline-none no-scrollbar"
+                                className="w-full h-full p-8 bg-white resize-none focus:outline-none no-scrollbar"
                                 value={text}
                             ></textarea>
                         </div>
